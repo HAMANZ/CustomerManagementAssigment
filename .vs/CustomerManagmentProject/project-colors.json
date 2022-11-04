@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "98adb8e7-cfc9-43ae-961a-d3064586a688": {
+      "ProjectGuid": "98adb8e7-cfc9-43ae-961a-d3064586a688",
+      "DisplayName": "RepositoryLayer",
+      "ColorIndex": 0
+    },
+    "f87a6dc0-8600-4995-a8b7-b1f22cd63592": {
+      "ProjectGuid": "f87a6dc0-8600-4995-a8b7-b1f22cd63592",
+      "DisplayName": "ServiceLayer",
+      "ColorIndex": 1
+    },
+    "3f277f7d-eb15-4862-86b2-55a86b51ec60": {
+      "ProjectGuid": "3f277f7d-eb15-4862-86b2-55a86b51ec60",
+      "DisplayName": "CustomerManagment",
+      "ColorIndex": 2
+    },
+    "839fce11-b51d-406e-87d9-0a8b9244bbe6": {
+      "ProjectGuid": "839fce11-b51d-406e-87d9-0a8b9244bbe6",
+      "DisplayName": "DomainLayer",
+      "ColorIndex": 3
+    },
+    "a2836563-bc5c-4ff4-999c-d44be9b73659": {
+      "ProjectGuid": "a2836563-bc5c-4ff4-999c-d44be9b73659",
+      "DisplayName": "StartupLayer",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 5
+}

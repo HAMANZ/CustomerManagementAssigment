@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="EntityMapper\**" />
+    <Compile Remove="Models\Common\**" />
+    <EmbeddedResource Remove="EntityMapper\**" />
+    <EmbeddedResource Remove="Models\Common\**" />
+    <None Remove="EntityMapper\**" />
+    <None Remove="Models\Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DTO\Admin\CoAdminAuthoritiesDTO.cs" />
+    <Compile Remove="DTO\Packages\GalleryDTO.cs" />
+    <Compile Remove="DTO\Packages\ItemsDTO.cs" />
+    <Compile Remove="DTO\Packages\ItemsMainCategoriesDTO.cs" />
+    <Compile Remove="DTO\Packages\ItemsSubCategoriesDTO.cs" />
+    <Compile Remove="DTO\Packages\ItemStatusDTO.cs" />
+    <Compile Remove="DTO\Packages\PriceAlarmDTO.cs" />
+    <Compile Remove="DTO\Packages\PurchasedItemDTO.cs" />
+    <Compile Remove="DTO\Packages\StoreCategoryDTO.cs" />
+    <Compile Remove="DTO\Packages\StoreDTO.cs" />
+    <Compile Remove="DTO\Packages\WishListDTO.cs" />
+    <Compile Remove="DTO\Packages\ZoneDTO.cs" />
+    <Compile Remove="DTO\Users\UserTypesDTO.cs" />
+    <Compile Remove="Models\Admin\CoAdminAuthorities.cs" />
+    <Compile Remove="Models\Packages\Gallery.cs" />
+    <Compile Remove="Models\Packages\Items.cs" />
+    <Compile Remove="Models\Packages\ItemsMainCategories.cs" />
+    <Compile Remove="Models\Packages\ItemsSubCategories.cs" />
+    <Compile Remove="Models\Packages\ItemStatus.cs" />
+    <Compile Remove="Models\Packages\PriceAlarm.cs" />
+    <Compile Remove="Models\Packages\PurchasedItem.cs" />
+    <Compile Remove="Models\Packages\Store.cs" />
+    <Compile Remove="Models\Packages\StoreCategory.cs" />
+    <Compile Remove="Models\Packages\WishList.cs" />
+    <Compile Remove="Models\Packages\Zone.cs" />
+    <Compile Remove="Models\Users\PaymentTypes.cs" />
+    <Compile Remove="Models\Users\UserDarts - Copy.cs" />
+    <Compile Remove="Models\Users\UserTypes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.0.3" />
+  </ItemGroup>
+
+</Project>

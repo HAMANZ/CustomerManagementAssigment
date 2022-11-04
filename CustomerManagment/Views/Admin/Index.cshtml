@@ -1,0 +1,328 @@
+﻿@using CustomerManagment.DomainLayer.DTO
+@model CustomManageCustomerDTOerDTO 
+@{
+	ViewData["Title"] = "Management"; 
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="form-2-container section-container section-container-gray-bg">
+	<div class="container">
+		
+		
+		<div class="row">
+			<div class="col form-2-box wow fadeInUp">
+				<form id="Form1" method="post" asp-controller="Admin" asp-action="Index" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-4">
+							<!-- First / Last Name -->
+							<fieldset style="height: 100%;" class="form-group border p-3">
+								<legend class="w-auto px-2">Saved entry will display here</legend>
+								<table cellpadding="0" cellspacing="0"> @foreach (CustomerDTO customer in Model.List) {
+									<tr><div class="form-group">
+											<div class="row">
+												<div class="col-sm-12">
+												<input   id="@customer.Id" class="customer col-lg-8 col-sm-7 form-control" value="@customer.CustomerName"/> </div>
+										</div>
+										</div>
+										</tr> } </table>
+							</fieldset>
+						</div>
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-sm-12">
+									<fieldset style="height: 100%;" class="form-group border p-3">
+										<legend class="w-auto px-2">Actions</legend>
+										<div class="row">
+											<div class="col-md-2">
+												<button type="button" id="bt_Edit" class="btn btn-primary btn-customized">EDIT</button>
+											</div>
+											<div class="col-md-2">
+												<button type="button" id="bt_Save" class="btn btn-primary btn-customized">SAVE</button>
+											</div>
+											<div class="col-md-2">
+												<button type="button" id="bt_Delete" class="btn btn-primary btn-customized">DELETE</button>
+											</div>
+											<div class="col-md-2">
+												<button type="button" id="bt_Cancel" class="btn btn-primary btn-customized">CANCEL</button>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<!-- Fieldset 2 -->
+							<div class="row">
+								<div class="col-sm-12">
+									<fieldset style="height: 100%;" class="form-group border p-3">
+										<legend class="w-auto px-2">Basic Information</legend>
+										<div class="form-group">
+											<div class="row">
+												<label asp-for="Customer.CustomerName" class="col-lg-2 col-sm-3 control-label">NAME</label>
+												<input asp-for="Customer.CustomerName" name="CustomerName" class="col-lg-8 col-sm-7 form-control" /> </div>
+										        <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
+											</div>
+										<div class="form-group">
+											<div class="row">
+												<label asp-for="Customer.FatherName" class="col-lg-2 col-sm-3 control-label">Father Name</label>
+												<input asp-for="Customer.FatherName" name="FatherName" class="col-lg-8 col-sm-7 form-control" /> </div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<label asp-for="Customer.MotherName" class="col-lg-2 col-sm-3 control-label">Mother Name</label>
+												<input asp-for="Customer.MotherName"  name="MotherName"  class="col-lg-8 col-sm-7 form-control" /> </div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												@{
+													bool chk1=false,chk2=false,chk3=false;}
+												@if(Model.Customer!=null )
+												{
+												@if(Model.Customer.MaterialStatus==1){
+													chk1 = true;
+												}@if(Model.Customer.MaterialStatus==2){
+													chk2 = true;
+												}@if(Model.Customer.MaterialStatus==3){
+													chk3 = true;
+												}
+												}
+												<label asp-for="Customer.MaterialStatus" class="col-lg-2 col-sm-8 control-label"> Material Status</label>
+												<input asp-for="Customer.MaterialStatus" id="Customer.MaterialStatus" type="radio" name="MaterialStatus" chk2 value="1" />
+												<label asp-for="Customer.MaterialStatus" class="col-lg-3 col-sm-6 control-label">Married</label>
+												<input asp-for="Customer.MaterialStatus" id="Customer.MaterialStatus" type="radio" name="MaterialStatus" chk2 value="2" />
+												<label asp-for="Customer.MaterialStatus" class="col-lg-3 col-sm-6 control-label">Single</label>
+												<input asp-for="Customer.MaterialStatus" id="Customer.MaterialStatus" type="radio" name="MaterialStatus" chk3 value="3" />
+												<label asp-for="Customer.MaterialStatus" class="col-lg-3 col-sm-6 control-label">Others</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<label asp-for="Customer.CountryId" class="col-lg-2 col-sm-8 control-label"> Country</label>
+												<select id="drpList" asp-for="Customer.CountryId" value="Customer.CountryId" name="CountryId" class="col-lg-8 col-sm-8  form-control" asp-items="@(new SelectList(Model.Country, "Id", "CountryName"))">
+													<option value="">--Select--</option>
+												</select>
+										</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<label asp-for="Customer.CustomerPhoto" class="col-lg-2 col-sm-12 control-label"> CustomerPhoto</label>
+												<input asp-for="Customer.CustomerPhoto" name="CustomerPhotoToUpload" class="col-lg-8 col-sm-12 control-label" type="file"> <span asp-validation-for="Customer.CustomerPhoto"></span> </div>
+										        	@if(Model.Customer!=null){ @if(Model.Customer.CustomerPhoto!=null ){
+														 var base64Image = Convert.ToBase64String(Model.Customer.CustomerPhoto);
+														 var source = String.Format("data:image/png;base64,{0}", base64Image);
+														<img src="@source" alt="Customer Photo">
+													<input type="hidden"  name="CustomerPhotoBase64" value="@base64Image" />
+												
+													}
+												}
+											</div>
+									</fieldset>
+								</div>
+							</div>
+							<!-- Fieldset 3  -->
+							<div class="row">
+								<div class="col-sm-12">
+									<fieldset style="height=100%" class="form-group border p-3">
+										<legend class="w-auto px-2">Other Information</legend>
+										<div class="row">
+											<div class="col-md-2">
+													<div class="form-group">
+												<button type="button" id="bt_add_address" class="btn btn-primary btn-customized">Add</button>
+											</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+										<table id="table_addresss" border="1" cellpadding="5" cellspacing="5" width="100%">
+											<tbody>
+												<tr>
+												<th style="text-align: center;" width="70%">Address</th>
+												<th></th>
+											</tr>
+													<tr>
+												<td id="">
+													<input  name="CustomerAddresses[]" class="col-lg-8 col-sm-7 form-control" /> 
+										       </td>
+												<td>
+												<div class="col-md-4">
+													<button type="button" id="" class="bt_edit_address btn btn-primary btn-customized">Edit</button>
+												</div>
+												<div class="col-md-4">
+													<button type="button" id="" class=" bt_delete_address btn btn-primary btn-customized">Delete</button>
+												</div>
+											</td>
+											</tr>
+											
+											@if(Model.Customer!=null ){
+												<input type="hidden" id="CustomerId" name="Id" value="@Model.Customer.Id" />
+												@if(Model.Customer.CustomerAddress!=null){
+												@foreach(var item in Model.Customer.CustomerAddress){
+													
+														<tr>
+														<td id="">
+															<input asp-for="Customer.CustomerAddresses" id="@item.Id" value="@item.CustomerAddress" name="CustomerAddress" class="col-lg-8 col-sm-7 form-control" /> 
+														 
+														</td>
+														<td>
+														<div class="col-md-4">
+															<button type="button" id="@item.Id"  class="bt_edit_address btn btn-primary btn-customized">Edit</button>
+														</div>
+														<div class="col-md-4">
+															<button type="button"  id="@item.Id" class="bt_delete_address btn btn-primary btn-customized">Delete</button>
+														</div>
+														</td>
+														</tr>
+														
+												}
+											  }
+											}else{
+													<input type="hidden" id="CustomerId" name="Id" value="" />
+											}
+											</tbody>
+										</table>
+										</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="~/js/jquery-3.3.1.js"></script>	
+<script src="https://code.jquery.com/jquery-3.5.1.mistomer.CustomerNamen.js"></script>
+<script>
+	function myFunction () {
+  $("#Form1").submit(); // Submit the form
+}
+$("document").ready(function(){
+	 var arrayBuffer;
+
+	 $(".customer").click(function(){  
+		
+		$("#CustomerId").attr("value",$(this).attr("Id"))
+		$("#Form1").attr("action","/Admin/Get")
+		setTimeout(myFunction, 300);
+		
+	 });
+	 
+	 $(".bt_edit_address").click(function(){  
+		var text=$(this).closest('tr').find('td').find("input").text();
+		var id=$(this).attr("id");
+	var CustomerId= $("#CustomerId").attr("value");
+			if(CustomerId.length==0){
+				alert("Please Select Customer ...");
+				return;
+			}
+			$.ajax({
+        type:"GET",
+        cache:false,
+        url:"/Admin/EditAddress",
+        data:{ Address : text, CustomerId : CustomerId ,Id:id},    
+        success: function () {
+			
+        }
+      });
+	 });
+	 
+	 
+	 $(".bt_delete_address").click(function(){  
+		
+		var text=$(this).closest('tr').find('td').find("input").attr("value");
+		var id=$(this).attr("id");
+	    
+		var CustomerId= $("#CustomerId").attr("value");
+				if(CustomerId.length==0){
+					alert("Please Select Customer ...");
+					return;
+				}
+
+		$.ajax({
+        type:"GET",
+        cache:false,
+        url:"/Admin/DeleteAddress",
+        data:{ Id : id, CustomerId : CustomerId },    
+        success: function () {
+			
+        }
+      });
+	  $(this).closest('tr').remove();
+		//$("#Form1").attr("action","/Admin/DeleteAddress")
+		//setTimeout(myFunction, 300);
+		
+	 });
+	 
+	 $("#bt_Cancel").click(function(){  
+		$(':input','#Form1')
+		  .not(':button, :submit, :reset, :hidden')
+		  .val('')
+		  .removeAttr('checked')
+		  .removeAttr('selected');
+
+		  $('#Form1')[0].reset();
+	 });
+
+
+	 var rowIdx;
+    $("#bt_add_address").click(function(){  
+
+		  var i = $("#table_addresss tbody tr").length + 1;
+		 
+		   // Adding a row inside the tbody.
+        $('#table_addresss tbody').append(`<tr id="R${++rowIdx}">
+             <td class="row-index text-center">
+             <input type="text" name="CustomerAddresses[]" class="col-lg-8 col-sm-7 form-control"/>
+             </td>
+              <td class="text-center">
+               <div class="col-md-4">
+				<button type="button" class="btn btn-primary btn-customized">Edit</button>
+				</div>
+				<div class="col-md-4">
+				<button type="button" class="btn btn-primary btn-customized">Delete</button>
+				</div>
+                </td>
+              </tr>`);
+
+		  
+    });
+
+
+    $("#bt_Save").click(function(){   
+		
+		$("#Form1").attr("action","/Admin/Save")
+		setTimeout(myFunction, 300);
+      
+    });
+
+	
+
+    $("#bt_Edit").click(function(){   
+		var Id= $("#CustomerId").attr("value");
+			if(Id.length==0){
+				alert("Please Select Customer ...");
+				return;
+			}
+		$("#Form1").attr("action","/Admin/Edit")
+		setTimeout(myFunction, 300);
+      
+    });
+
+	
+    $("#bt_Delete").click(function(){   
+	var Id= $("#CustomerId").attr("value");
+			
+			if(Id.length==0){
+				alert("Please Select Customer ...");
+				return;
+			}
+		$("#Form1").attr("action","/Admin/Delete")
+		setTimeout(myFunction, 300);
+      
+    });
+
+
+});
+</script>
